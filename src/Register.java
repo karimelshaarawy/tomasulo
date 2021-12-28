@@ -1,8 +1,10 @@
 public class Register {
     String Qi = "0";
     double value ;
+    String tag;
 
-    public Register() {
+    public Register(String tag) {
+        this.tag = tag;
         Qi="0";
         value=0.0;
     }

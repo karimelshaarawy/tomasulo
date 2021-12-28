@@ -1,15 +1,17 @@
-public class loadSlot {
+public class StoreSlot {
 
-    String tag ;
     boolean busy;
     int address;
     int timeLeft;
+    double value;
+    String Qi;
 
-    public loadSlot(String tag){
-        this.tag=tag;
+    public StoreSlot(){
         busy=false;
         address=0;
         timeLeft=0;
+        value=0;
+        Qi ="0";
 
     }
 }
