@@ -10,7 +10,7 @@ public class ReservationSlot {
     String Qj ;
     String Qk ;
     int timeLeft;
-
+//Test
     public ReservationSlot(String tag){
         this.tag=tag;
         busy=false;
