@@ -16,6 +16,8 @@ public class Instruction {
         this.reg2=reg2;
         this.issue=-1;
         this.executionStart=-1;
+        this.executionEnd=-1;
+        this.resultWrite=-1;
     }
 
     public void setIssue(int issue){

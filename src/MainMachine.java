@@ -11,6 +11,7 @@ public class MainMachine {
     double[] Memory ;
     LoadSlot[] LoadBuffer;
     StoreSlot[] StoreBuffer;
+    boolean busLine ;
 
 
     public MainMachine(int regNum,int multStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize){
@@ -23,7 +24,7 @@ public class MainMachine {
         this.Memory = new double[memSize];
         this.LoadBuffer = new LoadSlot[loadBufferSize];
         this.StoreBuffer = new StoreSlot[storeBufferSize];
-
+        this.busLine=true;
         //initialization
         for(int i=0;i<RegisterFile.length;i++)
             RegisterFile[i]=new Register("F"+i);
@@ -42,7 +43,8 @@ public class MainMachine {
 
     public static void main (String[] args){
 
-        System.out.println("l");
+
+        MainMachine main = new MainMachine(32,3,2,1000,3,3);
 
     }
 
