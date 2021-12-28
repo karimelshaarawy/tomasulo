@@ -11,6 +11,7 @@ public class MainMachine {
     double[] Memory ;
     LoadSlot[] LoadBuffer;
     StoreSlot[] StoreBuffer;
+    ////dfdsfsdfsdfsdfsdfsdfsdfsdfds
 
 
     public MainMachine(int regNum,int multStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize){
