@@ -21,7 +21,7 @@ public class ReservationSlot {
         timeLeft=0;
 
     }
-    public boolean executeAndCheckWriteBack() {
+    public boolean execute() {
         if (this.busy==true) {
             if(Qj.equals("0")&& Qk.equals("0")){
                 if(timeLeft>0){
@@ -36,8 +36,8 @@ public class ReservationSlot {
         return false;
     }
 
-    public double writeResult(){
-        this.busy=false;
+    public double terminate(){
+        this.busy=true;
         if (operation.equals("adds"))
             return Vj+ Vk;
         else if (operation.equals("subs"))
