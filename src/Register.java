@@ -23,4 +23,8 @@ public class Register {
     public void setQi(String qi) {
         Qi = qi;
     }
+
+    public void print() {
+        System.out.println(tag+"   " + Qi + "   " + value);
+    }
 }

@@ -12,4 +12,8 @@ public class LoadSlot {
         timeLeft=0;
 
     }
+    public void print() {
+        System.out.println(tag+"   "+busy + "   "+ address);
+    }
+
 }

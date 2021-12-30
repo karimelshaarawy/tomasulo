@@ -33,6 +33,15 @@ public class Instruction {
         this.resultWrite=resultWrite;
     }
 
+    public void print(){
+        if (operation=="L.D")
+        System.out.println(operation + " " + destination + " " + reg1 + "       "+ issue +"       "+ executionStart+".."+executionEnd+"          "+ resultWrite);
+        else
+            System.out.println(operation + " " + destination + " " + reg1 + " " + reg2 + "    " + issue +"       "+ executionStart+".."+executionEnd+"          "+ resultWrite);
+
+
+    }
+
 
 
 

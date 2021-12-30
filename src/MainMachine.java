@@ -45,7 +45,23 @@ public class MainMachine {
 
 
         MainMachine main = new MainMachine(32,3,2,1000,3,3);
-
+        Instruction instruction = new Instruction("L.D","F4","100","F2");
+        Instruction instruction2 = new Instruction("ADD","F4","100","F2");
+        ReservationSlot slot = new ReservationSlot("M1");
+        Register register =new Register("F4");
+        LoadSlot load_slot =new LoadSlot("L1");
+        StoreSlot storeSlot = new StoreSlot();
+        System.out.println(" operation      issue     execution     write result");
+        instruction.print();
+        instruction2.print();
+        System.out.println("Tag  Busy  operation  Vj   Vk   Qj   Qk");
+        slot.print();
+        System.out.println("Tag  Qi  value");
+        register.print();
+        System.out.println("Tag  Busy  Address");
+        load_slot.print();
+        System.out.println("Busy  Address  Qi    Value");
+        storeSlot.print();
     }
 
 }

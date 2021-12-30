@@ -14,4 +14,8 @@ public class StoreSlot {
         Qi ="0";
 
     }
+    public void print (){
+        System.out.println(busy+"   "+address+ "      "+ Qi + "     "+value);
+    }
+
 }
