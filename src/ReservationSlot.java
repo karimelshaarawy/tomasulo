@@ -48,5 +48,9 @@ public class ReservationSlot {
             return Vj/Vk;
     }
 
+    public void print() {
+        System.out.println(tag +"   "+busy + "  " + operation + "     " + Vj +"   " +Vk +"   "+Qj +"   "+Qk);
+    }
+
 
 }

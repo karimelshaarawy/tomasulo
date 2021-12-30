@@ -14,16 +14,8 @@ public class StoreSlot {
         Qi ="0";
 
     }
-
-    public boolean execute(){
-        if (this.busy==true && !Qi.equals("0")) {
-            if(timeLeft>0){
-                timeLeft--;
-                return false;
-            }else {
-                return true;
-            }
-        }
-        return false;
+    public void print (){
+        System.out.println(busy+"   "+address+ "      "+ Qi + "     "+value);
     }
+
 }
