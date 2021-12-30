@@ -52,6 +52,9 @@ public class LoadSlot {
     public void setAddress(int address) {
         this.address = address;
     }
+    public void print() {
+        System.out.println(tag+"   "+busy + "   "+ address);
+    }
 }
 
 
