@@ -14,6 +14,7 @@ public class ReservationSlot {
 //Test
     public ReservationSlot(String tag){
         this.tag=tag;
+        this.operation="";
         busy=false;
         Vj=0;
         Vk=0;
@@ -40,11 +41,11 @@ public class ReservationSlot {
 
     public double terminate(){
         this.busy=true;
-        if (operation.equals("adds"))
+        if (operation.equals("add"))
             return Vj+ Vk;
-        else if (operation.equals("subs"))
+        else if (operation.equals("sub"))
             return Vj- Vk;
-        else if (operation.equals("multiply"))
+        else if (operation.equals("mul"))
             return Vj*Vk;
         else
             return Vj/Vk;

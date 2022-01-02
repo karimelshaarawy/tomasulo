@@ -17,7 +17,7 @@ public class StoreSlot {
 
     }
     public boolean execute(){
-        if (this.busy==true) {
+        if (this.busy==true&&Qi.equals("0")) {
             if(timeLeft>0){
                 timeLeft--;
                 return false;
