@@ -22,13 +22,13 @@ public class MainMachine {
 
 
 
-    public MainMachine(int regNum,int multStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize,int addTime,int subTime,int multiplyTime,int divideTime,int loadTime ,int storeTime){
+    public MainMachine(int regNum,int mulStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize,int addTime,int subTime,int multiplyTime,int divideTime,int loadTime ,int storeTime){
         this.cycle =1;
         this.instructionToIssue =0;
         this.instructionsQueue = new ArrayList<Instruction>();
         this.registerFile=new Register[regNum];
         this.additionStation =new ReservationSlot[addStationNum];
-        this.multiplicationStation = new ReservationSlot[multStationsNum];
+        this.multiplicationStation = new ReservationSlot[mulStationsNum];
         this.memory = new double[memSize];
         this.loadBuffer = new LoadSlot[loadBufferSize];
         this.storeBuffer = new StoreSlot[storeBufferSize];
