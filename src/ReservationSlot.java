@@ -10,6 +10,7 @@ public class ReservationSlot {
     String Qj ;
     String Qk ;
     int timeLeft;
+    int id;
 //Test
     public ReservationSlot(String tag){
         this.tag=tag;
@@ -19,6 +20,7 @@ public class ReservationSlot {
         Qj="0";
         Qk="0";
         timeLeft=0;
+        id=-1;
 
     }
     public boolean execute() {

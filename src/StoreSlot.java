@@ -5,6 +5,7 @@ public class StoreSlot {
     int timeLeft;
     double value;
     String Qi;
+    int id ;
 
     public StoreSlot(){
         busy=false;
@@ -12,6 +13,7 @@ public class StoreSlot {
         timeLeft=0;
         value=0;
         Qi ="0";
+        id=-1;
 
     }
     public boolean execute(){

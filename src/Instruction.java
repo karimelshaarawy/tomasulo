@@ -8,6 +8,7 @@ public class Instruction {
     int executionStart ;
     int executionEnd ;
     int resultWrite ;
+    int id=-1;
 
     public Instruction(String operation,String destination,String reg1, String reg2){
         this.operation=operation;
@@ -18,6 +19,7 @@ public class Instruction {
         this.executionStart=-1;
         this.executionEnd=-1;
         this.resultWrite=-1;
+
     }
 
     public void setIssue(int issue){
@@ -34,7 +36,7 @@ public class Instruction {
     }
 
     public void print(){
-        if (operation=="L.D")
+        if (operation.equals("L.D"))
         System.out.println(operation + " " + destination + " " + reg1 + "       "+ issue +"       "+ executionStart+".."+executionEnd+"          "+ resultWrite);
         else
             System.out.println(operation + " " + destination + " " + reg1 + " " + reg2 + "    " + issue +"       "+ executionStart+".."+executionEnd+"          "+ resultWrite);

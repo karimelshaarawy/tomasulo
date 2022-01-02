@@ -4,6 +4,7 @@ public class LoadSlot {
     boolean busy;
     int address;
     int timeLeft;
+    int id =-1;
 
     public LoadSlot(String tag){
         this.tag=tag;
