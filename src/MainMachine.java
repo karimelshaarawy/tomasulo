@@ -21,13 +21,13 @@ public class MainMachine {
 
 
 
-    public MainMachine(int regNum,int multStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize,int addTime,int subTime,int multiplyTime,int divideTime,int loadTime ,int storeTime){
+    public MainMachine(int regNum,int mulStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize,int addTime,int subTime,int multiplyTime,int divideTime,int loadTime ,int storeTime){
         this.cycle =1;
         this.instructionToIssue =0;
         this.instructionsQueue = new ArrayList<Instruction>();
         this.registerFile=new Register[regNum];
         this.additionStation =new ReservationSlot[addStationNum];
-        this.multiplicationStation = new ReservationSlot[multStationsNum];
+        this.multiplicationStation = new ReservationSlot[mulStationsNum];
         this.memory = new double[memSize];
         this.loadBuffer = new LoadSlot[loadBufferSize];
         this.storeBuffer = new StoreSlot[storeBufferSize];
@@ -285,7 +285,6 @@ public class MainMachine {
             registerIndex=findRegisterIndex(instructionToFetch.destination);
             registerFile[registerIndex].Qi=loadBuffer[emptyIndex].tag;
         }
-      //S.D F1 F2 100
         if(op.equals("S.D")){
             addressToSet = Integer.parseInt(instructionToFetch.reg1);
             storeBuffer[emptyIndex].busy=true;
@@ -303,7 +302,6 @@ public class MainMachine {
 
 
         }
-        //MUL F1 F2 F3
         if(op.equals("MUL")||op.equals("DIV")){
             multiplicationStation[emptyIndex].busy=true;
             multiplicationStation[emptyIndex].id=id;
