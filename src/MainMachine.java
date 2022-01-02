@@ -21,6 +21,7 @@ public class MainMachine {
 
 
 
+
     public MainMachine(int regNum,int multStationsNum,int addStationNum,int memSize,int loadBufferSize,int storeBufferSize,int addTime,int subTime,int multiplyTime,int divideTime,int loadTime ,int storeTime){
         this.cycle =1;
         this.instructionToIssue =0;
@@ -56,6 +57,8 @@ public class MainMachine {
 
     public void checkUpdateAndExecute()
     {
+        String busTag="";
+        double busRes=-1;
         for(int i = 0; i< additionStation.length; i++)
         {
             ReservationSlot s = additionStation[i];
@@ -71,9 +74,13 @@ public class MainMachine {
 
             if(done && busLineFree)
             {
+
+
                 String tag = s.tag;
                 double res = s.terminate();
-                writeBackOP(tag,res);
+                busTag=tag;
+                busRes=res;
+                //writeBackOP(tag,res);
                 busLineFree=false;
                 instructionsQueue.get(additionStation[i].id).resultWrite=cycle;
                 additionStation[i]=new ReservationSlot("A"+i);
@@ -96,7 +103,9 @@ public class MainMachine {
             {
                 String tag = s.tag;
                 double res = s.terminate();
-                writeBackOP(tag,res);
+                busTag=tag;
+                busRes=res;
+                //writeBackOP(tag,res);
                 instructionsQueue.get(multiplicationStation[i].id).resultWrite=cycle;
                 busLineFree=false;
                 multiplicationStation[i]=new ReservationSlot("M"+i);
@@ -117,10 +126,13 @@ public class MainMachine {
             {
 //                writeBack()
                 String tag = s.tag;
-                int regNum = getRegNum(tag);
+               /* int regNum = getRegNum(s);
+
+                registerFile[regNum].setValue(res);*/
                 double res = memory[s.address];
-                registerFile[regNum].setValue(res);
-                writeBackOP(tag,res);
+                busTag=tag;
+                busRes=res;
+                //writeBackOP(tag,res);
                 instructionsQueue.get(loadBuffer[i].id).resultWrite=cycle;
                 loadBuffer[i]=new LoadSlot("L"+i);
                 busLineFree=false;
@@ -146,6 +158,9 @@ public class MainMachine {
                 storeBuffer[i]=new StoreSlot();
 
             }
+        }
+        if(!busTag.equals("")){
+            writeBackOP(busTag,busRes);
         }
 
     }
@@ -202,7 +217,7 @@ public class MainMachine {
     }
 
 
-   public void enterInstruction(Instruction instruction){
+   public void addInstruction(Instruction instruction){
        instruction.id=instructionsQueue.size();
         instructionsQueue.add(instruction);
 
@@ -214,6 +229,8 @@ public class MainMachine {
 
     public void fetch(){
         while(instructionToIssue<instructionsQueue.size()|| !emptyStations() ) {
+            if(cycle==4)
+                System.out.println();
             checkUpdateAndExecute();
             if(instructionToIssue<instructionsQueue.size()){
             int emptyIndex = checkIfStall();
@@ -392,7 +409,7 @@ public class MainMachine {
             }
         }
 
-        if(op.equals("MUL")){
+        if(op.equals("MUL")||op.equals("DIV")){
             for(int i=0;i<multiplicationStation.length;i++){
                 if(multiplicationStation[i].busy!=true){
                     return i;
@@ -413,10 +430,19 @@ public class MainMachine {
     public static void main (String[] args){
 
 
-        MainMachine main = new MainMachine(32,3,2,1000,3,3,2,2,2,2,1,1);
-        Instruction instruction = new Instruction("L.D","F0","100","F2");
-        Instruction instruction2 = new Instruction("MUL","F4","F0","F2");
-        Instruction instruction3 = new Instruction("S.D","F4","100","");
+        MainMachine main = new MainMachine(32,2,3,1000,3,3,2,2,10,40,2,1);
+        //f6
+        main.memory[32]=10;
+        //f2
+        main.memory[44]=2;
+        //f4
+        main.registerFile[4].value=1.0;
+        Instruction instruction = new Instruction("L.D","F6","32","");
+        Instruction instruction2 = new Instruction("L.D","F2","44","");
+        Instruction instruction3 = new Instruction("MUL","F0","F2","F4");
+        Instruction instruction4 = new Instruction("SUB","F8","F2","F6");
+        Instruction instruction5 = new Instruction("DIV","F10","F0","F6");
+        Instruction instruction6 = new Instruction("ADD","F6","F8","F2");
 //        Instruction instruction4= new Instruction("SUB","F0","100","F2");
 //        ReservationSlot slot = new ReservationSlot("M1");
 //        Register register =new Register("F4");
@@ -433,10 +459,28 @@ public class MainMachine {
 //        load_slot.print();
 //        System.out.println("Busy  Address  Qi    Value");
 //        storeSlot.print();
-        main.enterInstruction(instruction);
-        main.enterInstruction(instruction2);
-        main.enterInstruction(instruction3);
+        main.addInstruction(instruction);
+        main.addInstruction(instruction2);
+        main.addInstruction(instruction3);
+        main.addInstruction(instruction4);
+        main.addInstruction(instruction5);
+        main.addInstruction(instruction6);
         main.fetch();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
