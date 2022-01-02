@@ -130,7 +130,7 @@ public class MainMachine {
         for(int i = 0; i< storeBuffer.length; i++)
         {
             StoreSlot s = storeBuffer[i];
-            if(s.busy&&instructionsQueue.get(storeBuffer[i].id).executionStart==-1){
+            if(s.busy&&s.Qi.equals("0")&&instructionsQueue.get(storeBuffer[i].id).executionStart==-1){
                 instructionsQueue.get(storeBuffer[i].id).executionStart=cycle;
                 instructionsQueue.get(storeBuffer[i].id).executionEnd=cycle+storeTime-1;
 
@@ -156,6 +156,7 @@ public class MainMachine {
             if (r.Qi.equals(tag))
             {
                 r.value=res;
+                r.Qi="0";
             }
         }
         for (ReservationSlot r :
